@@ -63,23 +63,23 @@ export class Signature {
 
   private _render() {
     const { onClose, onCancel, onConfirm } = this.options
-    // 渲染遮罩层
+    // Render overlay
     const mask = document.createElement('div')
     mask.classList.add('signature-mask')
     mask.setAttribute(EDITOR_COMPONENT, EditorComponent.COMPONENT)
     document.body.append(mask)
-    // 渲染容器
+    // Render container
     const container = document.createElement('div')
     container.classList.add('signature-container')
     container.setAttribute(EDITOR_COMPONENT, EditorComponent.COMPONENT)
-    // 弹窗
+    // Popup
     const signatureContainer = document.createElement('div')
     signatureContainer.classList.add('signature')
     container.append(signatureContainer)
-    // 标题容器
+    // Title container
     const titleContainer = document.createElement('div')
     titleContainer.classList.add('signature-title')
-    // 标题&关闭按钮
+    // Title & close button
     const titleSpan = document.createElement('span')
     titleSpan.append(document.createTextNode('Insert Signature'))
     const titleClose = document.createElement('i')
@@ -92,10 +92,10 @@ export class Signature {
     titleContainer.append(titleSpan)
     titleContainer.append(titleClose)
     signatureContainer.append(titleContainer)
-    // 操作区
+    // Operation area
     const operationContainer = document.createElement('div')
     operationContainer.classList.add('signature-operation')
-    // 撤销
+    // Undo
     const undoContainer = document.createElement('div')
     undoContainer.classList.add('signature-operation__undo')
     const undoIcon = document.createElement('i')
@@ -104,7 +104,7 @@ export class Signature {
     undoContainer.append(undoIcon)
     undoContainer.append(undoLabel)
     operationContainer.append(undoContainer)
-    // 清空画布
+    // Clear canvas
     const trashContainer = document.createElement('div')
     trashContainer.classList.add('signature-operation__trash')
     const trashIcon = document.createElement('i')
@@ -114,7 +114,7 @@ export class Signature {
     trashContainer.append(trashLabel)
     operationContainer.append(trashContainer)
     signatureContainer.append(operationContainer)
-    // 绘图区
+    // Drawing area
     const canvasContainer = document.createElement('div')
     canvasContainer.classList.add('signature-canvas')
     const canvas = document.createElement('canvas')
@@ -124,10 +124,10 @@ export class Signature {
     canvas.style.height = `${this.canvasHeight / this.dpr}px`
     canvasContainer.append(canvas)
     signatureContainer.append(canvasContainer)
-    // 按钮容器
+    // Button container
     const menuContainer = document.createElement('div')
     menuContainer.classList.add('signature-menu')
-    // 取消按钮
+    // Cancel button
     const cancelBtn = document.createElement('button')
     cancelBtn.classList.add('signature-menu__cancel')
     cancelBtn.append(document.createTextNode('Cancel'))
@@ -139,7 +139,7 @@ export class Signature {
       this._dispose()
     }
     menuContainer.append(cancelBtn)
-    // 确认按钮
+    // Confirm button
     const confirmBtn = document.createElement('button')
     confirmBtn.append(document.createTextNode('OK'))
     confirmBtn.type = 'submit'
@@ -151,7 +151,7 @@ export class Signature {
     }
     menuContainer.append(confirmBtn)
     signatureContainer.append(menuContainer)
-    // 渲染
+    // Render
     document.body.append(container)
     this.container = container
     this.mask = mask
@@ -212,18 +212,18 @@ export class Signature {
 
   private _draw(evt: MouseEvent) {
     if (!this.isDrawing) return
-    // 计算鼠标移动速度
+    // Calculate mouse movement speed
     const curTimestamp = performance.now()
     const distance = Math.sqrt(evt.movementX ** 2 + evt.movementY ** 2)
     const speed = distance / (curTimestamp - this.preTimeStamp)
-    // 目标线宽：最小速度1，最大速度5，系数3
+    // Target line width: min speed 1, max speed 5, factor 3
     const SPEED_FACTOR = 3
     const targetLineWidth = Math.min(5, Math.max(1, 5 - speed * SPEED_FACTOR))
-    // 平滑过渡算法（20%的变化比例）调整线条粗细：系数0.2
+    // Smooth transition (20% change ratio) for line width: factor 0.2
     const SMOOTH_FACTOR = 0.2
     this.ctx.lineWidth =
       this.ctx.lineWidth * (1 - SMOOTH_FACTOR) + targetLineWidth * SMOOTH_FACTOR
-    // 绘制
+    // Draw
     const { offsetX, offsetY } = evt
     this.ctx.beginPath()
     this.ctx.moveTo(this.x, this.y)
@@ -233,7 +233,7 @@ export class Signature {
     this.y = offsetY
     this.linePoints.push([offsetX, offsetY])
     this.isDrawn = true
-    // 缓存之前时间戳
+    // Cache previous timestamp
     this.preTimeStamp = curTimestamp
   }
 
@@ -257,7 +257,7 @@ export class Signature {
 
   private _toData(): ISignatureResult | null {
     if (!this.linePoints.length) return null
-    // 查找矩形四角坐标
+    // Find bounding rectangle coordinates
     const startX = this.linePoints[0][0]
     const startY = this.linePoints[0][1]
     let minX = startX
@@ -279,7 +279,7 @@ export class Signature {
         maxY = point[1]
       }
     }
-    // 增加边框宽度
+    // Add border padding
     const lineWidth = this.ctx.lineWidth
     minX = minX < lineWidth ? 0 : minX - lineWidth
     minY = minY < lineWidth ? 0 : minY - lineWidth
@@ -287,7 +287,7 @@ export class Signature {
     maxY = maxY + lineWidth
     const sw = maxX - minX
     const sh = maxY - minY
-    // 裁剪图像
+    // Crop image
     const imageData = this.ctx.getImageData(
       minX * this.dpr,
       minY * this.dpr,

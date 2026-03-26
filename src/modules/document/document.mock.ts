@@ -230,7 +230,7 @@ elementList.splice(456, 0, {
   type: ElementType.IMAGE
 })
 
-// 模拟表格
+// Simulate table
 elementList.push({
   type: ElementType.TABLE,
   value: '',
@@ -348,7 +348,7 @@ elementList.push({
   ]
 })
 
-// 模拟checkbox
+// Simulate checkbox
 elementList.push(
   ...(<IElement[]>[
     {
@@ -380,7 +380,7 @@ elementList.push(
   ])
 )
 
-// LaTex公式
+// LaTeX formula
 elementList.push(
   ...(<IElement[]>[
     {
@@ -396,7 +396,7 @@ elementList.push(
   ])
 )
 
-// 日期选择
+// Date picker
 elementList.push(
   ...(<IElement[]>[
     {
@@ -422,7 +422,7 @@ elementList.push(
   ])
 )
 
-// 模拟Label标签
+// Simulate label
 elementList.push(
   ...(<IElement[]>[
     {
@@ -440,7 +440,7 @@ elementList.push(
   ])
 )
 
-// 模拟固定长度下划线
+// Simulate fixed-length underline
 elementList.push(
   ...[
     {
@@ -486,7 +486,7 @@ elementList.push(
   ]
 )
 
-// 模拟结尾文本
+// Simulate end text
 elementList.push(
   ...[
     {
@@ -546,5 +546,5 @@ export const options: IEditorOption = {
   zone: {
     tipDisabled: false
   },
-  maskMargin: [60, 0, 30, 0] // 菜单栏高度60，底部工具栏30为遮盖层
+  maskMargin: [60, 0, 30, 0] // menu bar height 60, bottom toolbar 30 for overlay
 }
