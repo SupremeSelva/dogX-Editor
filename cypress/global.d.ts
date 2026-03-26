@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
 declare namespace Editor {
-  import('../src/editor/index')
+  import('../src/core/engine/index')
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  import Editor from '../src/editor/index'
+  import Editor from '../src/core/engine/index'
 }
 
 declare namespace Cypress {

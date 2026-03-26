@@ -1,4 +1,4 @@
-import Editor, { ControlType, ElementType } from '../../../src/editor'
+import Editor, { ControlType, ElementType } from '../src/core/engine'
 
 describe('控件-复选框', () => {
   beforeEach(() => {

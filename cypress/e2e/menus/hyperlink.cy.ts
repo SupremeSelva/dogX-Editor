@@ -1,4 +1,4 @@
-import Editor from '../../../src/editor'
+import Editor from '../src/core/engine'
 
 describe('菜单-超链接', () => {
   beforeEach(() => {

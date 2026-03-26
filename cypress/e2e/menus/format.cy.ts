@@ -1,4 +1,4 @@
-import Editor from '../../../src/editor'
+import Editor from '../src/core/engine'
 
 describe('菜单-清除格式', () => {
   beforeEach(() => {

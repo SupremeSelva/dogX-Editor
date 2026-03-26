@@ -1,4 +1,4 @@
-import Editor from '../../../src/editor'
+import Editor from '../src/core/engine'
 
 describe('菜单-撤销&重做', () => {
   beforeEach(() => {

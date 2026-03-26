@@ -1,4 +1,4 @@
-import Editor from '../../../src/editor'
+import Editor from '../src/core/engine'
 
 describe('菜单-日期选择器', () => {
   beforeEach(() => {

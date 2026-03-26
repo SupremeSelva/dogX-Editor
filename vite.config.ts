@@ -4,7 +4,7 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import * as path from 'path'
 
 export default defineConfig(({ mode }) => {
-  const name = 'canvas-editor'
+  const name = 'document-editor'
   if (mode === 'lib') {
     return {
       plugins: [
@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
         {
           ...typescript({
             tsconfig: './tsconfig.json',
-            include: ['./src/editor/**']
+            include: ['./src/core/engine/**']
           }),
           apply: 'build',
           declaration: true,
@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
         lib: {
           name,
           fileName: name,
-          entry: path.resolve(__dirname, 'src/editor/index.ts')
+          entry: path.resolve(__dirname, 'src/core/engine/index.ts')
         },
         rollupOptions: {
           output: {

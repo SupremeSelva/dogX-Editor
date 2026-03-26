@@ -1,4 +1,4 @@
-import Editor, { ElementType } from '../../../src/editor'
+import Editor, { ElementType } from '../src/core/engine'
 
 describe('菜单-搜索', () => {
   beforeEach(() => {
