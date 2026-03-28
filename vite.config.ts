@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 import typescript from '@rollup/plugin-typescript'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import * as path from 'path'
@@ -38,9 +39,15 @@ export default defineConfig(({ mode }) => {
     }
   }
   return {
-    base: `/${name}/`,
+    plugins: [react()],
+    base: '/',
     server: {
       host: '0.0.0.0'
+    },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src')
+      }
     }
   }
 })

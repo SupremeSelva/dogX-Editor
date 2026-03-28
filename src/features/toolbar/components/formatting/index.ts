@@ -1,0 +1,1 @@
+export { BoldButton } from './BoldButton'
