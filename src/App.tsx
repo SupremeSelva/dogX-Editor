@@ -55,7 +55,7 @@ function App() {
     <>
       <Toolbar />
       
-      <div className="catalog" editor-component="catalog">
+      <div className="catalog" editor-component="catalog" style={{ display: 'none' }}>
         <div className="catalog__header">
           <span>Table of Contents</span>
           <div className="catalog__header__close"><i></i></div>

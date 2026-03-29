@@ -353,15 +353,19 @@
     </div>
     <div class="catalog" editor-component="catalog">
       <div class="catalog__header">
-        <span>Table of Contents</span>
+        <div class="panel-tabs">
+          <span class="tab active" data-target="toc">Table of Contents</span>
+          <span class="separator"> | </span>
+          <span class="tab" data-target="comments">Comments</span>
+        </div>
         <div class="catalog__header__close">
           <i></i>
         </div>
       </div>
       <div class="catalog__main"></div>
+      <div class="comment" editor-component="comment"></div>
     </div>
     <div class="editor"></div>
-    <div class="comment" editor-component="comment"></div>
     <div class="footer" editor-component="footer">
       <div>
         <div class="catalog-mode" title="Table of Contents">

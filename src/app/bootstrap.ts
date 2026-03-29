@@ -1333,6 +1333,32 @@ window.onload = function () {
   catalogModeDom.onclick = switchCatalog
   catalogHeaderCloseDom.onclick = switchCatalog
 
+  // Sidebar Tabs Logic
+  const catalogMainDom = document.querySelector<HTMLDivElement>('.catalog__main')!
+  const commentPanelDom = document.querySelector<HTMLDivElement>('.comment')!
+  const tabs = document.querySelectorAll<HTMLSpanElement>('.panel-tabs .tab')
+  
+  tabs.forEach(tab => {
+    tab.onclick = () => {
+      // Manage Active Tab Style
+      tabs.forEach(t => t.classList.remove('active'))
+      tab.classList.add('active')
+
+      // Toggle Panels
+      if (tab.dataset.target === 'toc') {
+        catalogMainDom.style.display = 'block'
+        commentPanelDom.style.display = 'none'
+      } else if (tab.dataset.target === 'comments') {
+        catalogMainDom.style.display = 'none'
+        commentPanelDom.style.display = 'block'
+      }
+    }
+  })
+
+  if (isCatalogShow) {
+    updateCatalog()
+  }
+
   const pageModeDom = document.querySelector<HTMLDivElement>('.page-mode')!
   const pageModeOptionsDom =
     pageModeDom.querySelector<HTMLDivElement>('.options')!
